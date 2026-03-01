@@ -50,8 +50,25 @@ Catbird integrates with several services hosted at `catbird.blue`:
 
 ## Troubleshooting
 
-### Missing Dependencies
-If you see errors about missing local packages, ensure that `Petrel` and `CatbirdMLSCore` are in the correct sibling directories relative to the `Catbird` folder.
+### Missing Package Product Errors
+If you see "Missing package product" errors or remote packages (like Nuke, GRDB, etc.) fail to resolve:
+
+1. **Verify Directory Structure**: Ensure the folders are named exactly `Catbird`, `Petrel`, and `CatbirdMLSCore` and are all inside the same parent directory. No extra nested folders (e.g., `Catbird/Catbird/...`).
+2. **Reset Package Caches**:
+   - In Xcode, go to **File > Packages > Reset Package Caches**.
+   - This forces Xcode to redownload all remote dependencies and relink local ones.
+3. **Resolve Package Versions**:
+   - Go to **File > Packages > Resolve Package Versions**.
+4. **Clean Build Folder**:
+   - Press `⌘⇧K` (Command-Shift-K) to clean the build folder.
+5. **Clear Derived Data**:
+   - Go to **Xcode Settings > Locations**.
+   - Click the arrow next to the **Derived Data** path.
+   - Delete the `Catbird-...` folder in the Finder.
+   - Restart Xcode.
+
+### Missing Local Dependencies
+If local packages still aren't recognized, check the **File Inspector** for the package in Xcode to ensure the "Location" is correctly pointing to the relative path `../Petrel` or `../CatbirdMLSCore`.
 
 ### Signing & Capabilities
 The app uses several entitlements:
